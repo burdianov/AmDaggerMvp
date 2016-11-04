@@ -20,6 +20,8 @@ import com.testography.am_mvp.ui.fragments.adapters.CatalogAdapter;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.Provides;
@@ -27,7 +29,9 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class CatalogFragment extends Fragment implements ICatalogView, View.OnClickListener {
     public static final String TAG = "CatalogFragment";
-    private CatalogPresenter mPresenter = CatalogPresenter.getInstance();
+
+    @Inject
+    CatalogPresenter mPresenter;
 
     @BindView(R.id.add_to_card_btn)
     Button mAddToCartBtn;
@@ -51,6 +55,7 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
             component = createDaggerComponent();
             DaggerService.registerComponent(Component.class, component);
         }
+        component.inject(this);
 
         mPresenter.takeView(this);
         mPresenter.initView();
