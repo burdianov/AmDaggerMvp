@@ -16,7 +16,7 @@ public class CatalogPresenter extends AbstractPresenter<ICatalogView> implements
         return ourInstance;
     }
 
-    private CatalogPresenter() {
+    public CatalogPresenter() {
         mCatalogModel = new CatalogModel();
     }
 

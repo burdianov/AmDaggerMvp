@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.testography.am_mvp.R;
 import com.testography.am_mvp.data.storage.dto.ProductDto;
+import com.testography.am_mvp.di.scopes.CatalogScope;
 import com.testography.am_mvp.mvp.presenters.CatalogPresenter;
 import com.testography.am_mvp.mvp.views.ICatalogView;
 import com.testography.am_mvp.ui.activities.RootActivity;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.Provides;
 import me.relex.circleindicator.CircleIndicator;
 
 public class CatalogFragment extends Fragment implements ICatalogView, View.OnClickListener {
@@ -117,6 +119,14 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
 
     //region ==================== DI ===================
 
+    @dagger.Module
+    public class Module {
+        @Provides
+        @CatalogScope
+        CatalogPresenter provideCatalogPresenter() {
+            return new CatalogPresenter();
+        }
+    }
 
     //endregion
 
