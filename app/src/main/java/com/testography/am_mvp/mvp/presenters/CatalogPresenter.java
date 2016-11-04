@@ -1,23 +1,31 @@
 package com.testography.am_mvp.mvp.presenters;
 
 import com.testography.am_mvp.data.storage.dto.ProductDto;
+import com.testography.am_mvp.di.DaggerService;
+import com.testography.am_mvp.di.scopes.CatalogScope;
 import com.testography.am_mvp.mvp.models.CatalogModel;
 import com.testography.am_mvp.mvp.views.ICatalogView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.Provides;
+
 public class CatalogPresenter extends AbstractPresenter<ICatalogView> implements
         ICatalogPresenter {
-    private static CatalogPresenter ourInstance = new CatalogPresenter();
-    private CatalogModel mCatalogModel;
+
+    @Inject
+    CatalogModel mCatalogModel;
     private List<ProductDto> mProductDtoList;
 
-    public static CatalogPresenter getInstance() {
-        return ourInstance;
-    }
-
     public CatalogPresenter() {
-        mCatalogModel = new CatalogModel();
+        Component component = DaggerService.getComponent(Component.class);
+        if (component == null) {
+            component = createDaggerComponent();
+            DaggerService.registerComponent(Component.class, component);
+        }
+        component.inject(this);
     }
 
     @Override
@@ -46,4 +54,31 @@ public class CatalogPresenter extends AbstractPresenter<ICatalogView> implements
     public boolean checkUserAuth() {
         return mCatalogModel.isUserAuth();
     }
+
+    //region ==================== DI ===================
+
+    private Component createDaggerComponent() {
+        return DaggerCatalogPresenter_Component.builder()
+                .module(new Module())
+                .build();
+    }
+
+    @dagger.Module
+    public class Module {
+        @Provides
+        @CatalogScope
+        CatalogModel provideCatalogModel() {
+            return new CatalogModel();
+        }
+    }
+
+    @dagger.Component(modules = Module.class)
+    @CatalogScope
+    interface Component {
+        void inject(CatalogPresenter presenter);
+    }
+
+    //endregion
+
+
 }
