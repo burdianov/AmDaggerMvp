@@ -11,7 +11,6 @@ import com.testography.am_mvp.di.components.DaggerDataManagerComponent;
 import com.testography.am_mvp.di.components.DataManagerComponent;
 import com.testography.am_mvp.di.modules.LocalModule;
 import com.testography.am_mvp.di.modules.NetworkModule;
-import com.testography.am_mvp.utils.ConstantsManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +57,9 @@ public class DataManager {
     }
 
     public boolean isAuthUser() {
-        return !mPreferencesManager.getAuthToken().equals(ConstantsManager
-                .INVALID_TOKEN);
+        return true;
+//        return !mPreferencesManager.getAuthToken().equals(ConstantsManager
+//                .INVALID_TOKEN);
     }
 
     public void loginUser(String email, String password) {
