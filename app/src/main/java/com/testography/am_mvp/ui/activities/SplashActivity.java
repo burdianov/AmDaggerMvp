@@ -97,6 +97,9 @@ public class SplashActivity extends AppCompatActivity implements IAuthView, View
     @Override
     protected void onDestroy() {
         mPresenter.dropView();
+        if (isFinishing()) {
+
+        }
         super.onDestroy();
     }
 
