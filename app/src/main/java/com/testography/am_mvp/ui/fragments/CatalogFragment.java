@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.testography.am_mvp.R;
 import com.testography.am_mvp.data.storage.dto.ProductDto;
+import com.testography.am_mvp.di.DaggerService;
 import com.testography.am_mvp.di.scopes.CatalogScope;
 import com.testography.am_mvp.mvp.presenters.CatalogPresenter;
 import com.testography.am_mvp.mvp.views.ICatalogView;
@@ -44,6 +45,13 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_catalog, container, false);
         ButterKnife.bind(this, view);
+
+        Component component = DaggerService.getComponent(Component.class);
+        if (component == null) {
+            component = createDaggerComponent();
+            DaggerService.registerComponent(Component.class, component);
+        }
+
         mPresenter.takeView(this);
         mPresenter.initView();
         mAddToCartBtn.setOnClickListener(this);
