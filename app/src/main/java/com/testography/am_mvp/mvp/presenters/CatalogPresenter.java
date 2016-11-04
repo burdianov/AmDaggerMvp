@@ -5,6 +5,8 @@ import com.testography.am_mvp.di.DaggerService;
 import com.testography.am_mvp.di.scopes.CatalogScope;
 import com.testography.am_mvp.mvp.models.CatalogModel;
 import com.testography.am_mvp.mvp.views.ICatalogView;
+import com.testography.am_mvp.mvp.views.IRootView;
+import com.testography.am_mvp.ui.activities.RootActivity;
 
 import java.util.List;
 
@@ -14,6 +16,9 @@ import dagger.Provides;
 
 public class CatalogPresenter extends AbstractPresenter<ICatalogView> implements
         ICatalogPresenter {
+
+    @Inject
+    RootPresenter mRootPresenter;
 
     @Inject
     CatalogModel mCatalogModel;
@@ -43,11 +48,17 @@ public class CatalogPresenter extends AbstractPresenter<ICatalogView> implements
     public void clickOnBuyButton(int position) {
         if (getView() != null) {
             if (checkUserAuth()) {
-                getView().showAddToCartMessage(mProductDtoList.get(position));
+                getRootView().showMessage("Item " + mProductDtoList
+                        .get(position).getProductName() +
+                        " added successfully to the Cart");
             } else {
                 getView().showAuthScreen();
             }
         }
+    }
+
+    private IRootView getRootView() {
+        return mRootPresenter.getView();
     }
 
     @Override
@@ -59,6 +70,7 @@ public class CatalogPresenter extends AbstractPresenter<ICatalogView> implements
 
     private Component createDaggerComponent() {
         return DaggerCatalogPresenter_Component.builder()
+                .component(DaggerService.getComponent(RootActivity.Component.class))
                 .module(new Module())
                 .build();
     }
@@ -72,7 +84,8 @@ public class CatalogPresenter extends AbstractPresenter<ICatalogView> implements
         }
     }
 
-    @dagger.Component(modules = Module.class)
+    @dagger.Component(dependencies = RootActivity.Component.class, modules =
+            Module.class)
     @CatalogScope
     interface Component {
         void inject(CatalogPresenter presenter);

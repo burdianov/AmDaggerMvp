@@ -71,7 +71,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
             ProductDto product = bundle.getParcelable("PRODUCT");
-            Component component = createDagerComponent(product);
+            Component component = createDaggerComponent(product);
             component.inject(this);
             // TODO: 04-Nov-16 fix recreate component
         }
@@ -149,25 +149,6 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
         }
     }
 
-    @Override
-    public void showMessage(String message) {
-        getRootActivity().showMessage(message);
-    }
-
-    @Override
-    public void showError(Throwable e) {
-        getRootActivity().showError(e);
-    }
-
-    @Override
-    public void showLoad() {
-        getRootActivity().showLoad();
-    }
-
-    @Override
-    public void hideLoad() {
-        getRootActivity().hideLoad();
-    }
     //endregion
 
     private RootActivity getRootActivity() {
@@ -188,7 +169,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
 
     //region ==================== DI ===================
 
-    private Component createDagerComponent(ProductDto product) {
+    private Component createDaggerComponent(ProductDto product) {
         PicassoComponent picassoComponent = DaggerService.getComponent(PicassoComponent.class);
         if (picassoComponent == null) {
             picassoComponent = DaggerPicassoComponent.builder()

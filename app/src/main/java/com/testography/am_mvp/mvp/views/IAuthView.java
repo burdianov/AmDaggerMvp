@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import com.testography.am_mvp.mvp.presenters.IAuthPresenter;
 import com.testography.am_mvp.ui.custom_views.AuthPanel;
 
-public interface IAuthView extends IView {
+public interface IAuthView extends IRootView {
 
     IAuthPresenter getPresenter();
 

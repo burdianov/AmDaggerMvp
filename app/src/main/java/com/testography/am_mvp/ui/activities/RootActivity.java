@@ -25,7 +25,10 @@ import android.widget.ImageView;
 
 import com.testography.am_mvp.BuildConfig;
 import com.testography.am_mvp.R;
-import com.testography.am_mvp.mvp.views.IView;
+import com.testography.am_mvp.di.DaggerService;
+import com.testography.am_mvp.di.scopes.RootScope;
+import com.testography.am_mvp.mvp.presenters.RootPresenter;
+import com.testography.am_mvp.mvp.views.IRootView;
 import com.testography.am_mvp.ui.fragments.AccountFragment;
 import com.testography.am_mvp.ui.fragments.CatalogFragment;
 import com.testography.am_mvp.ui.fragments.FavoritesFragment;
@@ -36,10 +39,14 @@ import com.testography.am_mvp.utils.RoundedAvatarDrawable;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.Provides;
 
-public class RootActivity extends AppCompatActivity implements IView, NavigationView
+public class RootActivity extends AppCompatActivity implements IRootView,
+        NavigationView
         .OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer_layout)
@@ -57,6 +64,9 @@ public class RootActivity extends AppCompatActivity implements IView, Navigation
 
     FragmentManager mFragmentManager;
 
+    @Inject
+    RootPresenter mRootPresenter;
+
     private ArrayList<Integer> mNavSet = new ArrayList<>();
 
     private int mActiveNavItem = 1;
@@ -67,8 +77,16 @@ public class RootActivity extends AppCompatActivity implements IView, Navigation
         setContentView(R.layout.activity_root);
         ButterKnife.bind(this);
 
+        Component component = DaggerService.getComponent(Component.class);
+        if (component == null) {
+            component = createDaggerComponent();
+            DaggerService.registerComponent(Component.class, component);
+        }
+        component.inject(this);
+
         initToolbar();
         initDrawer();
+        mRootPresenter.takeView(this);
 
         mFragmentManager = getSupportFragmentManager();
         if (savedInstanceState == null) {
@@ -76,6 +94,12 @@ public class RootActivity extends AppCompatActivity implements IView, Navigation
                     .replace(R.id.fragment_container, new CatalogFragment())
                     .commit();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        mRootPresenter.dropView();
+        super.onDestroy();
     }
 
     @Override
@@ -177,7 +201,7 @@ public class RootActivity extends AppCompatActivity implements IView, Navigation
         }
     }
 
-    //region ==================== IView ===================
+    //region ==================== IRootView ===================
 
     @Override
     public void showMessage(String message) {
@@ -220,4 +244,33 @@ public class RootActivity extends AppCompatActivity implements IView, Navigation
     }
 
     //endregion
+
+    //region ==================== DI ===================
+
+    private Component createDaggerComponent() {
+        return DaggerRootActivity_Component.builder()
+                .module(new Module())
+                .build();
+    }
+
+    @dagger.Module
+    public class Module {
+        @Provides
+        @RootScope
+        RootPresenter provideRootPresenter() {
+            return new RootPresenter();
+        }
+    }
+
+    @dagger.Component(modules = Module.class)
+    @RootScope
+    public interface Component {
+        void inject(RootActivity activity);
+
+        RootPresenter getRootPresenter();
+    }
+
+    //endregion
+
+
 }

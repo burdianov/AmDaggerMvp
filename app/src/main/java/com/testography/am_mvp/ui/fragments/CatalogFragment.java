@@ -15,7 +15,6 @@ import com.testography.am_mvp.di.DaggerService;
 import com.testography.am_mvp.di.scopes.CatalogScope;
 import com.testography.am_mvp.mvp.presenters.CatalogPresenter;
 import com.testography.am_mvp.mvp.views.ICatalogView;
-import com.testography.am_mvp.ui.activities.RootActivity;
 import com.testography.am_mvp.ui.fragments.adapters.CatalogAdapter;
 
 import java.util.List;
@@ -77,11 +76,6 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
     }
 
     //region ==================== ICatalogView ===================
-    @Override
-    public void showAddToCartMessage(ProductDto productDto) {
-        showMessage("Item " + productDto.getProductName() + " added successfully " +
-                "to the Cart");
-    }
 
     @Override
     public void showCatalogView(List<ProductDto> productsList) {
@@ -103,32 +97,6 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
         // TODO: 28-Oct-16 update count product on cart icon
     }
     //endregion
-
-    //region ==================== IView ===================
-    @Override
-    public void showMessage(String message) {
-        getRootActivity().showMessage(message);
-    }
-
-    @Override
-    public void showError(Throwable e) {
-        getRootActivity().showError(e);
-    }
-
-    @Override
-    public void showLoad() {
-        getRootActivity().showLoad();
-    }
-
-    @Override
-    public void hideLoad() {
-        getRootActivity().hideLoad();
-    }
-    //endregion
-
-    private RootActivity getRootActivity() {
-        return (RootActivity) getActivity();
-    }
 
     //region ==================== DI ===================
 
