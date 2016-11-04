@@ -128,6 +128,11 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
         }
     }
 
+    @dagger.Component(modules = Module.class)
+    interface Component {
+        void inject(CatalogFragment fragment);
+    }
+
     //endregion
 
 
