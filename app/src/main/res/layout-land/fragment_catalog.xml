@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <com.testography.am_mvp.utils.CustomNestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_wrap"
+        android:layout_alignParentTop="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/pager_wrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.testography.am_mvp.utils.WrapContentHeightViewPager
+                android:id="@+id/product_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </com.testography.am_mvp.utils.CustomNestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/btn_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_small_24"
+            app:ci_animator="@animator/indicator_animator"
+            app:ci_drawable="@drawable/primary_radius"
+            app:ci_drawable_unselected="@drawable/black_radius"/>
+
+        <Button
+            android:id="@+id/add_to_card_btn"
+            style="@style/CustomButton"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/add_to_cart"
+            android:theme="@style/StartBtn"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
