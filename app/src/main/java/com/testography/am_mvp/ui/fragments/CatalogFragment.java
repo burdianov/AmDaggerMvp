@@ -119,6 +119,12 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
 
     //region ==================== DI ===================
 
+    private Component createDaggerComponent() {
+        return DaggerCatalogFragment_Component.builder()
+                .module(new Module())
+                .build();
+    }
+
     @dagger.Module
     public class Module {
         @Provides
@@ -129,6 +135,7 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
     }
 
     @dagger.Component(modules = Module.class)
+    @CatalogScope
     interface Component {
         void inject(CatalogFragment fragment);
     }
