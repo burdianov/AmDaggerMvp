@@ -114,4 +114,11 @@ public class CatalogFragment extends Fragment implements ICatalogView, View.OnCl
     private RootActivity getRootActivity() {
         return (RootActivity) getActivity();
     }
+
+    //region ==================== DI ===================
+
+
+    //endregion
+
+
 }
