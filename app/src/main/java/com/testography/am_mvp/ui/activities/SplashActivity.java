@@ -98,7 +98,7 @@ public class SplashActivity extends AppCompatActivity implements IAuthView, View
     protected void onDestroy() {
         mPresenter.dropView();
         if (isFinishing()) {
-
+            DaggerService.unregisterScope(AuthScope.class);
         }
         super.onDestroy();
     }
