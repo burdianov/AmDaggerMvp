@@ -113,7 +113,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
         mPicasso.load(product.getImageUrl())
                 .networkPolicy(NetworkPolicy.OFFLINE)
                 .fit()
-                .centerCrop()
+                .centerInside()
                 .into(mProductImage, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -124,7 +124,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
                     public void onError() {
                         mPicasso.load(product.getImageUrl())
                                 .fit()
-                                .centerCrop()
+                                .centerInside()
                                 .into(mProductImage);
                     }
                 });
