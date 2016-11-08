@@ -47,7 +47,7 @@ import dagger.Provides;
 
 public class RootActivity extends AppCompatActivity implements IRootView,
         NavigationView
-        .OnNavigationItemSelectedListener {
+                .OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
@@ -67,6 +67,7 @@ public class RootActivity extends AppCompatActivity implements IRootView,
     @Inject
     RootPresenter mRootPresenter;
 
+    private AlertDialog.Builder exitDialog;
     private ArrayList<Integer> mNavSet = new ArrayList<>();
 
     private int mActiveNavItem = 1;
@@ -86,6 +87,7 @@ public class RootActivity extends AppCompatActivity implements IRootView,
 
         initToolbar();
         initDrawer();
+        initExitDialog();
         mRootPresenter.takeView(this);
         mRootPresenter.initView();
         // TODO: 05-Nov-16 init View
@@ -104,30 +106,32 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         super.onDestroy();
     }
 
+    private void initExitDialog() {
+        exitDialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.close_app)
+                .setMessage(R.string.are_you_sure)
+                .setPositiveButton(R.string.yes,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                .setNegativeButton(R.string.no,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+    }
+
     @Override
     public void onBackPressed() {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
             if (mFragmentManager.getBackStackEntryCount() == 0) {
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.close_app)
-                        .setMessage(R.string.are_you_sure)
-                        .setPositiveButton(R.string.yes,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which) {
-                                        finish();
-                                    }
-                                })
-                        .setNegativeButton(R.string.no,
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which) {
-                                    }
-                                }).show();
+                exitDialog.show();
             } else {
                 super.onBackPressed();
                 int activeItem = 0;
@@ -180,6 +184,7 @@ public class RootActivity extends AppCompatActivity implements IRootView,
                 mActiveNavItem = 4;
                 break;
         }
+
         if (fragment != null) {
             mFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment)
@@ -188,6 +193,7 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         }
         mDrawer.closeDrawer(GravityCompat.START);
         mNavSet.add(mActiveNavItem);
+
         return true;
     }
 
