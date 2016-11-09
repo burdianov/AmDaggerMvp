@@ -123,4 +123,11 @@
     <style name="custom_dialog">
         <item name="android:fullDark">@android:color/transparent</item>
     </style>
+
+    <style name="PushSwitch" parent="Theme.AppCompat.Light">
+
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorSwitchThumbNormal">@color/color_white</item>
+        <item name="android:colorForeground">@color/color_grey_darker</item>
+    </style>
 </resources>

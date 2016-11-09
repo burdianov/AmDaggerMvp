@@ -184,7 +184,6 @@ public class RootActivity extends AppCompatActivity implements IRootView,
                 mActiveNavItem = 4;
                 break;
         }
-
         if (fragment != null) {
             mFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment)

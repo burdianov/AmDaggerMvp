@@ -75,5 +75,19 @@
     <string name="facebook_button">Facebook button</string>
     <string name="twitter_button">Twitter button</string>
     <string name="vk_button">VK button</string>
+    <string name="phone_label">Phone:</string>
+    <string name="phone">+7 (917) 971-11-11</string>
+    <string name="add_address">Add Address</string>
+    <string name="delivery_address">Delivery Address:</string>
+    <string name="label_building">Building</string>
+    <string name="address">Red Square 24-43, 6th Floor</string>
+    <string name="label_comments">Comments</string>
+    <string name="comments">6th Floor</string>
+    <string name="label_work_address">Work:</string>
+    <string name="work_comments_label">Comments</string>
+    <string name="work_comments">The only office on the floor</string>
+    <string name="push_notifications">Push notifications:</string>
+    <string name="order_status_notification">Notify about the order status</string>
+    <string name="special_offer_notification">Notify about promotions and special offers</string>
 
 </resources>
