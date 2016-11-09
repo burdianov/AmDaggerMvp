@@ -51,7 +51,6 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/appbar_account"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -91,7 +90,7 @@
                         android:textSize="12sp"/>
 
                     <TextView
-                        android:id="@+id/tv_account_phone"
+                        android:id="@+id/account_phone_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/size_small_16"
@@ -153,7 +152,7 @@
                             android:textSize="@dimen/font_small_12"/>
 
                         <TextView
-                            android:id="@+id/account_address1"
+                            android:id="@+id/account_building_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/spacing_medial_24"
@@ -170,7 +169,7 @@
                             android:textSize="@dimen/font_small_12"/>
 
                         <TextView
-                            android:id="@+id/account_address_comment1"
+                            android:id="@+id/account_comments_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/size_small_16"
@@ -218,7 +217,7 @@
                             android:textSize="@dimen/font_small_12"/>
 
                         <TextView
-                            android:id="@+id/account_address2"
+                            android:id="@+id/account_work_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/spacing_medial_24"
@@ -235,7 +234,7 @@
                             android:textSize="@dimen/font_small_12"/>
 
                         <TextView
-                            android:id="@+id/account_address_comment2"
+                            android:id="@+id/account_work_comments_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/size_small_16"
@@ -253,8 +252,8 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btn_add_address"
-                    style="@style/CustomButton"
+                    android:id="@+id/add_address_btn"
+                    style="@style/CustomButtonAccount"
                     android:theme="@style/StartBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
