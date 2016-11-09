@@ -30,6 +30,7 @@ import com.testography.am_mvp.di.scopes.RootScope;
 import com.testography.am_mvp.mvp.presenters.RootPresenter;
 import com.testography.am_mvp.mvp.views.IRootView;
 import com.testography.am_mvp.ui.fragments.AccountFragment;
+import com.testography.am_mvp.ui.fragments.AddressFragment;
 import com.testography.am_mvp.ui.fragments.CatalogFragment;
 import com.testography.am_mvp.ui.fragments.FavoritesFragment;
 import com.testography.am_mvp.ui.fragments.NotificationsFragment;
@@ -46,8 +47,7 @@ import butterknife.ButterKnife;
 import dagger.Provides;
 
 public class RootActivity extends AppCompatActivity implements IRootView,
-        NavigationView
-                .OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener, AccountFragment.Callbacks {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
@@ -258,6 +258,16 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         return DaggerRootActivity_Component.builder()
                 .module(new Module())
                 .build();
+    }
+
+    @Override
+    public void callAddressFragment(AddressFragment addressFragment) {
+        if (addressFragment != null) {
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, addressFragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @dagger.Module
