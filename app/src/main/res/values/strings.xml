@@ -78,6 +78,7 @@
     <string name="phone_label">Phone:</string>
     <string name="phone">+7 (917) 971-11-11</string>
     <string name="add_address">Add Address</string>
+    <string name="show_on_map">Show on map</string>
     <string name="delivery_address">Delivery Address:</string>
     <string name="label_building">Building</string>
     <string name="address">Red Square 24-43, 6th Floor</string>
@@ -89,5 +90,11 @@
     <string name="push_notifications">Push notifications:</string>
     <string name="order_status_notification">Notify about the order status</string>
     <string name="special_offer_notification">Notify about promotions and special offers</string>
+    <string name="delivery_location_label">Delivery location</string>
+    <string name="delivery_location">In the middle of nowhere</string>
+    <string name="hint_building">Bldg.</string>
+    <string name="hint_apartment">Apt.</string>
+    <string name="hint_floor">Floor</string>
+    <string name="address_comments">Comments</string>
 
 </resources>

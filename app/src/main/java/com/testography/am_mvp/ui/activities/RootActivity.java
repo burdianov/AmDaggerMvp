@@ -90,7 +90,6 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         initExitDialog();
         mRootPresenter.takeView(this);
         mRootPresenter.initView();
-        // TODO: 05-Nov-16 init View
 
         mFragmentManager = getSupportFragmentManager();
         if (savedInstanceState == null) {
