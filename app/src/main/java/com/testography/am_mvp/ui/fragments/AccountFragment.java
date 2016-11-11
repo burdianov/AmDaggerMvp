@@ -51,7 +51,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         ButterKnife.bind(this, view);
 
         mAddAddress.setOnClickListener(this);
-
         return view;
     }
 

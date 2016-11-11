@@ -47,7 +47,8 @@ import butterknife.ButterKnife;
 import dagger.Provides;
 
 public class RootActivity extends AppCompatActivity implements IRootView,
-        NavigationView.OnNavigationItemSelectedListener, AccountFragment.Callbacks {
+        NavigationView.OnNavigationItemSelectedListener, AccountFragment
+                .Callbacks {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
@@ -134,13 +135,13 @@ public class RootActivity extends AppCompatActivity implements IRootView,
             } else {
                 super.onBackPressed();
                 int activeItem = 0;
-                mNavSet.remove(mNavSet.size() - 1);
-                if (mNavSet.size() > 0) {
-                    activeItem = mNavSet.get(mNavSet.size() - 1);
-                } else if (mNavSet.size() == 0) {
-                    activeItem = 1;
-                }
-                mNavigationView.getMenu().getItem(activeItem).setChecked(true);
+//                mNavSet.remove(mNavSet.size() - 1);
+//                if (mNavSet.size() > 0) {
+//                    activeItem = mNavSet.get(mNavSet.size() - 1);
+//                } else if (mNavSet.size() == 0) {
+//                    activeItem = 1;
+//                }
+//                mNavigationView.getMenu().getItem(activeItem).setChecked(true);
             }
         }
     }
@@ -186,7 +187,7 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         if (fragment != null) {
             mFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment)
-                    .addToBackStack(String.valueOf(mActiveNavItem))
+//                    .addToBackStack(String.valueOf(mActiveNavItem))
                     .commit();
         }
         mDrawer.closeDrawer(GravityCompat.START);
