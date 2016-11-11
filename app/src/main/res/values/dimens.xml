@@ -78,5 +78,6 @@
     <dimen name="account_avatar_height">136dp</dimen>
     <dimen name="account_avatar_width">136dp</dimen>
     <dimen name="pointer_size">18dp</dimen>
+    <dimen name="account_toolbar_height">184dp</dimen>
 
 </resources>
