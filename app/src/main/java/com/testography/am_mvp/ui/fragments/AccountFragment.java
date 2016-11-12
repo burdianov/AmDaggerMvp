@@ -35,6 +35,11 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onClick(View view) {
+        mCallbacks.callAddressFragment(new AddressFragment());
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mCallbacks = null;
@@ -54,8 +59,5 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    @Override
-    public void onClick(View view) {
-        mCallbacks.callAddressFragment(new AddressFragment());
-    }
+
 }
