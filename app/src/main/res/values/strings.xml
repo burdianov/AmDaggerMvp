@@ -96,5 +96,7 @@
     <string name="hint_apartment">Apt.</string>
     <string name="hint_floor">Floor</string>
     <string name="address_comments">Comments</string>
+    <string name="street">Street</string>
+    <string name="dummy_street">Dummy Street</string>
 
 </resources>

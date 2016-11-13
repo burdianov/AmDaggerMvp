@@ -45,12 +45,12 @@
                 android:textStyle="bold"
                 app:layout_collapseMode="parallax"/>
 
-            <ImageView
-                android:background="@drawable/user_avatar_big"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="143dp"
-                android:layout_width="@dimen/account_avatar_width"
-                android:layout_height="@dimen/account_avatar_height"/>
+            <!--<ImageView-->
+            <!--android:background="@drawable/user_avatar_big"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_marginTop="143dp"-->
+            <!--android:layout_width="@dimen/account_avatar_width"-->
+            <!--android:layout_height="@dimen/account_avatar_height"/>-->
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -343,5 +343,19 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_width"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/quila"
+        app:border_color="@android:color/white"
+        app:border_width="2dp"
+        app:finalHeight="@dimen/image_final_width"
+        app:finalYPosition="2dp"
+        app:layout_behavior="com.testography.am_mvp.utils.AvatarImageBehavior"
+        app:startHeight="2dp"
+        app:startToolbarPosition="2dp"
+        app:startXPosition="2dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

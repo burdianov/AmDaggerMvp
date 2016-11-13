@@ -96,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/spacing_tiny_4"
-                        android:text="@string/delivery_location_label"
+                        android:text="@string/street"
                         android:textColor="@color/color_grey_darker"
                         android:textSize="@dimen/font_small_12"/>
 
@@ -104,7 +104,7 @@
                         android:id="@+id/street_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/delivery_location"
+                        android:text="@string/dummy_street"
                         android:textSize="@dimen/size_small_16"
                         tools:text="@string/delivery_location"/>
 
