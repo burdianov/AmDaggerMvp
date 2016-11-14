@@ -139,8 +139,8 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         MenuItemCompat.setActionView(item, R.layout.badge_layout);
         RelativeLayout notifCount = (RelativeLayout) MenuItemCompat.getActionView(item);
 
-        TextView tv = (TextView) notifCount.findViewById(R.id.items_in_cart);
-        tv.setText("12");
+        TextView tv = (TextView) notifCount.findViewById(R.id.items_in_cart_txt);
+        tv.setText("8");
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -24,7 +24,6 @@ public class AuthPresenter extends AbstractPresenter<IAuthView> implements
     AuthModel mAuthModel;
 
     public AuthPresenter() {
-        mAuthModel = new AuthModel();
         Component component = DaggerService.getComponent(Component.class);
         if (component == null) {
             component = createDaggerComponent();

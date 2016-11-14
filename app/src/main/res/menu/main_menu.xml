@@ -2,10 +2,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:title="Dummy"
         android:id="@+id/badge"
+        android:title="@string/basket"
         android:actionLayout="@layout/badge_layout"
-        android:src="@drawable/basket"
+        android:icon="@drawable/basket"
         app:showAsAction="always">
     </item>
 </menu>
