@@ -26,4 +26,5 @@ public class AddressFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_address, container, false);
     }
 
+
 }

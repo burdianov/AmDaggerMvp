@@ -77,6 +77,8 @@ public class RootActivity extends AppCompatActivity implements IRootView,
 
     private int mActiveNavItem = 1;
 
+//    private ActionBarDrawerToggle mToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +104,32 @@ public class RootActivity extends AppCompatActivity implements IRootView,
                     .replace(R.id.fragment_container, new CatalogFragment())
                     .commit();
         }
+
+//        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//            @Override
+//            public void onBackStackChanged() {
+//                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+//                    getSupportActionBar().setDisplayHomeAsUpEnabled(true); // show back button
+//                    mToolbar.setNavigationOnClickListener(new View
+//                            .OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            onBackPressed();
+//                        }
+//                    });
+//                } else {
+//                    //show hamburger
+//                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//                    mToggle.syncState();
+//                    mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            mDrawer.openDrawer(GravityCompat.START);
+//                        }
+//                    });
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -165,6 +193,7 @@ public class RootActivity extends AppCompatActivity implements IRootView,
     private void initDrawer() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
                 mDrawer, mToolbar, R.string.open_drawer, R.string.close_drawer);
+
         mDrawer.setDrawerListener(toggle);
         toggle.syncState();
         mNavigationView.setNavigationItemSelectedListener(this);
@@ -172,6 +201,7 @@ public class RootActivity extends AppCompatActivity implements IRootView,
     }
 
     private void initToolbar() {
+
         setSupportActionBar(mToolbar);
     }
 
