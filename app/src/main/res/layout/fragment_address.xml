@@ -51,13 +51,12 @@
                         android:textColor="@color/color_grey_darker"
                         android:textSize="@dimen/font_small_12"/>
 
-                    <TextView
-                        android:id="@+id/delivery_location_tv"
+                    <EditText
+                        android:id="@+id/delivery_location_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/delivery_location"
-                        android:textSize="@dimen/size_small_16"
-                        tools:text="@string/delivery_location"/>
+                        android:textSize="@dimen/size_small_16"/>
 
                 </LinearLayout>
 
@@ -100,13 +99,12 @@
                         android:textColor="@color/color_grey_darker"
                         android:textSize="@dimen/font_small_12"/>
 
-                    <TextView
-                        android:id="@+id/street_tv"
+                    <EditText
+                        android:id="@+id/street_et"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/dummy_street"
-                        android:textSize="@dimen/size_small_16"
-                        tools:text="@string/delivery_location"/>
+                        android:textSize="@dimen/size_small_16"/>
 
                 </LinearLayout>
 

@@ -114,6 +114,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
                 .networkPolicy(NetworkPolicy.OFFLINE)
                 .fit()
                 .centerInside()
+                .placeholder(R.drawable.placeholder)
                 .into(mProductImage, new Callback() {
                     @Override
                     public void onSuccess() {
