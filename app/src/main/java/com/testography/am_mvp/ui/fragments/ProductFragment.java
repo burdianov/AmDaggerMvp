@@ -125,6 +125,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
                         mPicasso.load(product.getImageUrl())
                                 .fit()
                                 .centerInside()
+                                .placeholder(R.drawable.placeholder)
                                 .into(mProductImage);
                     }
                 });
