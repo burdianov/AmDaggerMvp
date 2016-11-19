@@ -81,7 +81,7 @@
     <dimen name="account_toolbar_height">184dp</dimen>
 
     <dimen name="image_width">120dp</dimen>
-    <dimen name="image_final_width">32dp</dimen>
+    <dimen name="avatar_big_final_width">0dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>
     <dimen name="avatar_margin_top">116dp</dimen>
 

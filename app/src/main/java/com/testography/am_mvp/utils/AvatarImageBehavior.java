@@ -2,9 +2,10 @@ package com.testography.am_mvp.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.testography.am_mvp.R;
@@ -13,11 +14,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 @SuppressWarnings("unused")
 public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageView> {
-
+    private static String TAG = "Avatar Behavior";
     private final static float MIN_AVATAR_PERCENTAGE_SIZE = 0.3f;
     private final static int EXTRA_FINAL_AVATAR_PADDING = 80;
 
-    private final static String TAG = "behavior";
     private Context mContext;
 
     private float mCustomFinalYPosition;
@@ -30,7 +30,7 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
     private float mFinalLeftAvatarPadding;
     private float mStartPosition;
     private int mStartXPosition;
-    private float mStartToolbarPosition;
+    private float mStartDependencyPosition;
     private int mStartYPosition;
     private int mFinalYPosition;
     private int mStartHeight;
@@ -54,7 +54,7 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
         init();
 
         mFinalLeftAvatarPadding = context.getResources().getDimension(
-                R.dimen.spacing_normal);
+                R.dimen.spacing_normal_16);
     }
 
     private void init() {
@@ -62,22 +62,23 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
     }
 
     private void bindDimensions() {
-        mAvatarMaxSize = mContext.getResources().getDimension(R.dimen.image_width);
+        mAvatarMaxSize = mContext.getResources().getDimension(R.dimen.account_avatar_width);
     }
 
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, CircleImageView child, View dependency) {
-        return dependency instanceof Toolbar;
+        return dependency instanceof AppBarLayout;
     }
 
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, CircleImageView child, View dependency) {
         maybeInitProperties(child, dependency);
 
-        final int maxScrollDistance = (int) (mStartToolbarPosition);
-        float expandedPercentageFactor = dependency.getY() / maxScrollDistance;
+        final float maxScrollDistance = mStartDependencyPosition;
+        float expandedPercentageFactor = dependency.getBottom() / maxScrollDistance;
 
         if (expandedPercentageFactor < mChangeBehaviorPoint) {
+            Log.d(TAG, "onDependentViewChanged: " + "expandedPercentageFactor < mChangeBehaviorPoint");
             float heightFactor = (mChangeBehaviorPoint - expandedPercentageFactor) / mChangeBehaviorPoint;
 
             float distanceXToSubtract = ((mStartXPosition - mFinalXPosition)
@@ -95,6 +96,7 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
             lp.height = (int) (mStartHeight - heightToSubtract);
             child.setLayoutParams(lp);
         } else {
+            Log.d(TAG, "onDependentViewChanged: " + "else");
             float distanceYToSubtract = ((mStartYPosition - mFinalYPosition)
                     * (1f - expandedPercentageFactor)) + (mStartHeight / 2);
 
@@ -111,10 +113,10 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
 
     private void maybeInitProperties(CircleImageView child, View dependency) {
         if (mStartYPosition == 0)
-            mStartYPosition = (int) (dependency.getY());
+            mStartYPosition = (int) (dependency.getBottom() - child.getHeight() * 0.15);
 
         if (mFinalYPosition == 0)
-            mFinalYPosition = (dependency.getHeight() / 2);
+            mFinalYPosition = (int) (mCustomFinalHeight / 2);
 
         if (mStartHeight == 0)
             mStartHeight = child.getHeight();
@@ -125,11 +127,11 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
         if (mFinalXPosition == 0)
             mFinalXPosition = mContext.getResources().getDimensionPixelOffset(R.dimen.abc_action_bar_content_inset_material) + ((int) mCustomFinalHeight / 2);
 
-        if (mStartToolbarPosition == 0)
-            mStartToolbarPosition = dependency.getY();
+        if (mStartDependencyPosition == 0)
+            mStartDependencyPosition = dependency.getBottom();
 
         if (mChangeBehaviorPoint == 0) {
-            mChangeBehaviorPoint = (child.getHeight() - mCustomFinalHeight) / (2f * (mStartYPosition - mFinalYPosition));
+            mChangeBehaviorPoint = (child.getHeight() - mCustomFinalHeight) / ((mStartYPosition - mFinalYPosition));
         }
     }
 
