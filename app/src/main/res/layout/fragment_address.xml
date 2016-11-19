@@ -169,7 +169,6 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/hint_apartment"
                             android:inputType="numberDecimal"
-
                             android:textColorHint="@color/color_grey_darker"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -195,11 +194,8 @@
                             android:id="@+id/floor_et"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:enabled="false"
-                            android:focusable="false"
                             android:hint="@string/hint_floor"
                             android:inputType="numberDecimal"
-                            android:text="28"
                             android:textColorHint="@color/color_grey_darker"/>
 
                     </android.support.design.widget.TextInputLayout>
