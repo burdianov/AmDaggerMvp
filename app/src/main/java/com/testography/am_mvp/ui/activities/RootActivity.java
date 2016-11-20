@@ -254,6 +254,17 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         }
     }
 
+    @Override
+    public void callAddressFragment(AddressFragment addressFragment) {
+        if (addressFragment != null) {
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, addressFragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
+    }
+
+
     //region ==================== IRootView ===================
 
     @Override
@@ -304,16 +315,6 @@ public class RootActivity extends AppCompatActivity implements IRootView,
         return DaggerRootActivity_Component.builder()
                 .module(new Module())
                 .build();
-    }
-
-    @Override
-    public void callAddressFragment(AddressFragment addressFragment) {
-        if (addressFragment != null) {
-            mFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, addressFragment)
-                    .addToBackStack(null)
-                    .commit();
-        }
     }
 
     @dagger.Module

@@ -278,6 +278,4 @@ public class SplashActivity extends AppCompatActivity implements IAuthView, View
     }
 
     //endregion
-
-
 }

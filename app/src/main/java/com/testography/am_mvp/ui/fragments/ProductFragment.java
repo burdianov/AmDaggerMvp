@@ -24,7 +24,6 @@ import com.testography.am_mvp.di.modules.PicassoCacheModule;
 import com.testography.am_mvp.di.scopes.ProductScope;
 import com.testography.am_mvp.mvp.presenters.ProductPresenter;
 import com.testography.am_mvp.mvp.views.IProductView;
-import com.testography.am_mvp.ui.activities.RootActivity;
 
 import javax.inject.Inject;
 
@@ -34,6 +33,7 @@ import dagger.Provides;
 
 public class ProductFragment extends Fragment implements IProductView, View.OnClickListener {
     public static final String TAG = "ProductFragment";
+    private static final String PRODUCT_KEY = "PRODUCT";
 
     @BindView(R.id.product_name_txt)
     TextView mProductNameTxt;
@@ -62,7 +62,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
 
     public static ProductFragment newInstance(ProductDto product) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("PRODUCT", product);
+        bundle.putParcelable(PRODUCT_KEY, product);
         ProductFragment fragment = new ProductFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -70,7 +70,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
 
     private void readBundle(Bundle bundle) {
         if (bundle != null) {
-            ProductDto product = bundle.getParcelable("PRODUCT");
+            ProductDto product = bundle.getParcelable(PRODUCT_KEY);
             Component component = createDaggerComponent(product);
             component.inject(this);
             // TODO: 04-Nov-16 fix recreate component
@@ -87,6 +87,7 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
         mPresenter.initView();
         mPlusBtn.setOnClickListener(this);
         mMinusBtn.setOnClickListener(this);
+
         return view;
     }
 
@@ -109,7 +110,6 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
             mProductPriceTxt.setText(String.valueOf(product.getPrice() + ".-"));
         }
 
-        // TODO: 04-Nov-16 Adjust images size and use placeholder
         mPicasso.load(product.getImageUrl())
                 .networkPolicy(NetworkPolicy.OFFLINE)
                 .fit()
@@ -152,10 +152,6 @@ public class ProductFragment extends Fragment implements IProductView, View.OnCl
     }
 
     //endregion
-
-    private RootActivity getRootActivity() {
-        return (RootActivity) getActivity();
-    }
 
     @Override
     public void onClick(View view) {

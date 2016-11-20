@@ -80,6 +80,4 @@ public class ProductPresenter extends AbstractPresenter<IProductView> implements
     }
 
     //endregion
-
-
 }
