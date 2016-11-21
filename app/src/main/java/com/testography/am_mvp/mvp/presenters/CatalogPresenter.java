@@ -92,6 +92,4 @@ public class CatalogPresenter extends AbstractPresenter<ICatalogView> implements
     }
 
     //endregion
-
-
 }

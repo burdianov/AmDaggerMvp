@@ -2,7 +2,7 @@ package com.testography.am_mvp.ui.fragments.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.testography.am_mvp.data.storage.dto.ProductDto;
 import com.testography.am_mvp.ui.fragments.ProductFragment;
@@ -10,7 +10,8 @@ import com.testography.am_mvp.ui.fragments.ProductFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogAdapter extends FragmentPagerAdapter {
+public class CatalogAdapter extends FragmentStatePagerAdapter {
+
     private List<ProductDto> mProductList = new ArrayList<>();
 
     public CatalogAdapter(FragmentManager fm) {
